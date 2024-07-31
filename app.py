@@ -19,6 +19,7 @@ def home():
 def classify_text():
     data = request.json
     text = data.get('text')
+    candidate_labels = data.get('candidate_labels', ["positive", "negative", "neutral"])
     
     if not text:
         return jsonify({'error': 'No text provided'}), 400
