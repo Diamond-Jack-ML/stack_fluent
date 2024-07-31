@@ -10,6 +10,10 @@ HF_API_TOKEN = "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"  # You can set this as an
 
 headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
 
+@app.route('/')
+def home():
+    return "Welcome to the Stack Fluent API. Use the /classify endpoint to classify text."
+
 @app.route('/classify', methods=['POST'])
 def classify_text():
     data = request.json
