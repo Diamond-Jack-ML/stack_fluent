@@ -19,16 +19,19 @@ def home():
 def classify_text():
     data = request.json
     text = data.get('text')
-    candidate_labels = data.get('candidate_labels', ["positive", "negative", "neutral"])
+    candidate_labels = data.get('candidate_labels')
     
     if not text:
         return jsonify({'error': 'No text provided'}), 400
     
-    response = requests.post(HF_API_URL, headers=headers, json={"inputs": text})
+    if not candidate_labels:
+        return jsonify({'error': 'No candidate labels provided'}), 400
+    
+    response = requests.post(HF_API_URL, headers=headers, json={"inputs": text, "parameters": {"candidate_labels": candidate_labels}})
     
     if response.status_code == 200:
         result = response.json()
-        predicted_label = result[0]["label"]
+        predicted_label = result["labels"][0]
         return jsonify({
             'text': text,
             'predicted_label': predicted_label
