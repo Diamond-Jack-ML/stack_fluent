@@ -1,0 +1,11 @@
+env/
+*.log
+*.md
+.git/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.h5
+*.pt
