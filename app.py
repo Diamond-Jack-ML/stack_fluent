@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Replace with your Hugging Face model URL
 HF_API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-mnli"
-HF_API_TOKEN = "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"  # You can set this as an environment variable for better security
+HF_API_TOKEN = os.getenv("HF_API_TOKEN")  # You can set this as an environment variable for better security
 
 headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
 
