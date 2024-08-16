@@ -51,11 +51,11 @@ def refine_ontology_with_feedback(feedback, previous_prompt):
 
 # Function to summarize text
 def summarize_text(text):
-    response = openai.ChatCompletion.create(
+    completion = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": f"Summarize the following text to retain key points:\n\n{text}"}
         ]
     )
-    return response.choices[0].message['content']
+    return completion.choices[0].message
